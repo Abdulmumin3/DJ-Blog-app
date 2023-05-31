@@ -1,0 +1,33 @@
+{% extends 'blog_app/base.html' %} {% block title %}Create post {% endblock %}
+<!--  -->
+{% block content %}
+<div class="md:w-1/2 sm:w-full  my-6 mx-auto p-6 bg-gray-100 rounded-xl">
+  <h1 class="mb-6 text-3xl">Create a new Post</h1>
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="inline-block mb-2">Title</label><br />
+      {{form.title}}
+    </div>
+    <div class="mb-3">
+        <label class="inline-block mb-2">Body</label><br />
+        {{form.body}}
+    </div>
+    <div class="mb-3">
+      <label class="inline-block mb-2">Tags</label><br />
+      {{form.tags}}
+    </div>
+    <div class="mb-3">
+      <label class="inline-block mb-2">Image</label><br />
+      {{form.image_thumbnail}}
+    </div>
+      <button
+      class="py-4 px-8 w-full rounded-xl text-white text-lg bg-teal-500 hover:bg-teal-700"
+    >
+      Create Post
+    </button>
+    </div>
+    
+  </form>
+</div>
+{% endblock %}

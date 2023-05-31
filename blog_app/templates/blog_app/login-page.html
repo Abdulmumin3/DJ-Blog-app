@@ -1,0 +1,45 @@
+{% extends 'blog_app/base.html' %} {% block title %}Login {% endblock %}
+<!--  -->
+{% block content %}
+<div class="md:w-1/2 w-full my-6 mx-auto p-6 bg-gray-100 rounded-xl">
+  {%if messages%} {% for message in messages %}
+  <div class="mb-4 bg-red-500 text-center rounded-lg px-4 py-4">
+    <h2 style="color: white">{{message}}</h2>
+  </div>
+  {%endfor%} {%endif%}
+  <h1 class="mb-6 text-3xl">Login</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="inline-block mb-2">Username</label><br />
+      {{form.username}}
+    </div>
+    <div class="mb-3">
+      <label class="inline-block mb-2">Password</label><br />
+      {{form.password}} {%if form.errors or form.non_field_errors%}
+      <div class="mb-3 p-6 bg-red-100 rounded-xl">
+        {% for field in form %} {{field.errors}} {% endfor %}
+        {{form.non_field_errors}}
+      </div>
+      {%endif%}
+    </div>
+    <button
+      class="py-4 px-8 mt-4 w-full rounded-xl text-white text-lg bg-blue-500 hover:bg-blue-700"
+    >
+      Login
+    </button>
+  </form>
+  <div class="text-center">
+    <p>
+      Forgot your password
+      <a href="{% url 'password-reset' %}" class="text-red-500"
+        >Reset Password</a
+      >
+    </p>
+    <p>
+      Don't have an account?
+      <a href="{% url 'signup' %}" class="text-red-500">Join now</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

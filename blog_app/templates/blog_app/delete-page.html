@@ -1,0 +1,15 @@
+{% extends 'blog_app/base.html' %} {% block title %}Delete {{post.slug}}
+{%endblock%}
+<!--  -->
+{% block content %}
+<form method="post">
+  {% csrf_token %}
+  <p class="mb-4">Are you sure you want to delete "{{post}}"</p>
+  <button
+    class="py-4 px-8 w-full rounded-xl text-white text-lg bg-red-500 hover:bg-red-700"
+  >
+    Delete
+  </button>
+  <a href="{{request.META.HTTP_REFERER}}">&larr; Go back</a>
+</form>
+{% endblock %}

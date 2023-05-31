@@ -1,0 +1,30 @@
+{% extends 'blog_app/base.html' %} {% block title %}Update {{post.slug}}
+{%endblock%}
+<!--  -->
+{% block content %}
+<h1><strong>Update "{{post}}"</strong></h1>
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label class="inline-block mb-2">Title</label><br />
+    {{form.title}}
+  </div>
+  <div class="mb-3">
+    <label class="inline-block mb-2">Body</label><br />
+    {{form.body}}
+  </div>
+  <div class="mb-3">
+    <label class="inline-block mb-2">Tags</label><br />
+    {{form.tags}}
+  </div>
+  <div class="mb-3">
+    <label class="inline-block mb-2">Image</label><br />
+    {{form.image_thumbnail}}
+  </div>
+  <button
+    class="py-4 px-8 w-full rounded-xl text-white text-lg bg-teal-500 hover:bg-teal-700"
+  >
+    Update
+  </button>
+</form>
+{% endblock %}

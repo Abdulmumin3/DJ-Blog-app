@@ -1,0 +1,225 @@
+{% extends 'blog_app/base.html' %} {% block title %}Home {% endblock %}
+<!--  -->
+{% block content %}
+
+<form method="get">
+  <label
+    for="default-search"
+    class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+    >Search</label
+  >
+  <div class="relative">
+    <div
+      class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+    >
+      <svg
+        aria-hidden="true"
+        class="w-5 h-5 text-gray-500 dark:text-gray-400"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        ></path>
+      </svg>
+    </div>
+    <input
+      type="search"
+      id="q"
+      name="q"
+      value="{{ request.GET.q }}"
+      class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      placeholder="Search Posts..."
+      required
+    />
+    <button
+      type="submit"
+      class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+    >
+      Search
+    </button>
+  </div>
+</form>
+
+<!-- <nav>
+  <form action="" method="get">
+    <input type="search" name="q" id="q" value="{{ request.GET.q }}" />
+    <button type="submit">Search</button>
+  </form>
+</nav> -->
+<section class="text-gray-600 body-font -mt-20 mb-4">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-wrap">
+      {% for post in postss %}
+      <div class="p-4 md:w-1/3">
+        <div
+          class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden"
+        >
+          {% if post.image_thumbnail %}
+          <img
+            class="lg:h-48 md:h-36 w-full object-cover object-center"
+            src="{{post.image_thumbnail.url}}"
+            alt="blog"
+          />
+          {% endif %}
+          <div class="p-6">
+            <!-- <h2
+              class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1"
+            >
+              
+            </h2> -->
+            <h1 class="title-font text-lg font-medium text-gray-900 mb-3">
+              <strong>{{post.title}}</strong>
+            </h1>
+            <p class="leading-relaxed mb-3">
+              {{post.body|truncatewords:20|linebreaks}}
+            </p>
+            <div class="flex mt-4 items-center flex-wrap">
+              <a
+                href="{% url 'blog:detail' post.slug %}"
+                class="py-4 px-4 rounded-xl text-white text-['50px'] bg-blue-500 hover:bg-blue-700 inline-flex items-center md:mb-2 lg:mb-0"
+                >Read More
+                <svg
+                  class="w-4 h-4 ml-2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5l7 7-7 7"></path>
+                </svg>
+              </a>
+              <span
+                class="text-gray-400 mr-3 inline-flex items-center lg:ml-auto md:ml-0 ml-auto leading-none text-sm pr-3 py-1 border-r-2 border-gray-200"
+                ><div
+                  class="h-full w-10 absolute inset-0 flex items-center justify-center"
+                >
+                  <!-- <div class="h-full w-1 bg-gray-200 pointer-events-none"></div> -->
+                </div>
+                <div
+                  class="flex-shrink-0 w-10 h-10 rounded-full bg-indigo-500 inline-flex items-center justify-center text-white relative z-10"
+                >
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                  </svg>
+                </div>
+                <a
+                  href="{% url 'user-profile' post.author.id %}"
+                  class="hover:text-gray-900"
+                >
+                  {{post.author}}</a
+                >
+
+                <!-- <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  class="w-6 h-6"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg> -->
+              </span>
+              <span
+                class="text-gray-400 inline-flex items-center leading-none text-sm"
+              >
+                <svg
+                  class="w-4 h-4"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  fill="none"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
+                  ></path></svg
+                >{{post.comments.count}}
+              </span>
+              <br />
+              <div class="flex flex-wrap ml-2 mt-8 md:mt-8">
+                {% for tag in post.tags.all %}
+                <a
+                  href="{% url 'tags' tag.slug %}"
+                  class="py-2 px-4 mb-4 rounded-xl text-white text-['50px'] bg-teal-500 hover:bg-teal-700"
+                  >{{ tag }}</a
+                >
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% if postss.has_other_pages %}
+<nav class="text-2xl mb-4">
+  <ul class="justify-center space-x-8 -mt-16 mb-4 flex">
+    {% if postss.has_previous %}
+
+    <li
+      class="rounded-xl border border-solid -mt-2 py-2 px-4 bg-white hover:bg-blue-400"
+    >
+      <a href="?page={{postss.previous_page_number}}"><span>&laquo;</span></a>
+    </li>
+    {% else %}
+    <li
+      class="disabled rounded-xl border border-solid -mt-2 py-2 px-4 bg-white hover:bg-red-300"
+    >
+      <span>&laquo;</span>
+    </li>
+    {% endif %} {%for p in postss.paginator.page_range%}
+    <!--  -->
+    {%if postss.number == p%}
+    <li><a class="text-red-500">{{p}}</a></li>
+    {% else %}
+    <li><a href="?page={{p}}">{{p}}</a></li>
+    {% endif %} {% endfor %} {% if postss.has_next %}
+    <li
+      class="rounded-xl border border-solid -mt-2 py-2 px-4 bg-white hover:bg-blue-400"
+    >
+      <a href="?page={{postss.next_page_number}}"><span>&raquo;</span></a>
+    </li>
+    {% else %}
+    <li
+      class="disabled rounded-xl border border-solid -mt-2 py-2 px-4 bg-white hover:bg-red-300"
+    >
+      <span>&raquo;</span>
+    </li>
+    {% endif %}
+  </ul>
+</nav>
+{% endif %}
+<div class="mt-12 flex flex-wrap md:space-x-8 md:space-y-6">
+  {% for tag in tags %}
+  <a
+    href="{% url 'tags' tag.slug %}"
+    class="py-2 px-4 rounded-xl ml-2 mt-2 text-white text-['50px'] bg-teal-500 hover:bg-teal-700"
+    >{{ tag }}</a
+  >
+  {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'blog_app/base.html' %} {% block title %}Post {{post.slug}}
+{%endblock%}
+<!--  -->
+{% block content %}
+<div class="mb-8">
+  <h2 class="mb-4">
+    <strong>{{post}}</strong> by {{post.author}} @{{post.updated_at}}
+  </h2>
+  <br />
+  <p class="mb-4">{{post.body}}</p>
+  <br />
+  <a
+    class="py-4 px-8 rounded-xl text-white text-lg bg-teal-500 hover:bg-teal-700"
+    href="{% url 'blog:update' post.slug %}"
+    >Update post</a
+  >
+  <a
+    class="py-4 px-8 rounded-xl text-white text-lg bg-red-500 hover:bg-red-700"
+    href="{% url 'blog:delete' post.slug %}"
+    >Delete post</a
+  >
+</div>
+<div class="border-b-2 mb-8 border-solid border-black"></div>
+{% with comments.count as total_comments %}
+<span class="text-gray-400 inline-flex items-center leading-none text-sm">
+  <svg
+    class="w-4 h-4 mr-1"
+    stroke="currentColor"
+    stroke-width="2"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    viewBox="0 0 24 24"
+  >
+    <path
+      d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"
+    ></path>
+  </svg>
+  <h2 class="text-black font-black">
+    {{ total_comments }} comment{{ total_comments|pluralize }}
+  </h2>
+</span>
+{% endwith %}
+<!-- <h2>{{comments.count|pluralize}} comments</h2> -->
+{% for comment in comments %}
+<p>{{ comment.name }} on <span>{{comment.created_at}}</span></p>
+<p>{{ comment.body }}</p>
+<hr class="mb-4" />
+{% empty %}
+<p>There are no comments yet.</p>
+{% endfor %} {%if messages%} {% for message in messages %}
+<div class="mb-4 bg-teal-500 text-center rounded-lg px-4 py-4">
+  <h2 style="color: black">{{message}}</h2>
+</div>
+{%endfor%} {%endif%}{% if new_comment %} {% else %}
+<div class="md:w-1/2 w-full my-6 mx-auto p-6 bg-gray-100 rounded-xl">
+  <h1 class="mb-6 text-3xl">Leave a comment</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="inline-block mb-2">Name</label><br />
+      {{comment_form.name}}
+    </div>
+    <div class="mb-3">
+      <label class="inline-block mb-2">Email</label><br />
+      {{comment_form.email}}
+    </div>
+    <div class="mb-3">
+      <label class="inline-block mb-2">Body</label><br />
+      {{comment_form.body}}
+    </div>
+    <button
+      class="py-4 px-8 w-full rounded-xl text-white text-lg bg-teal-500 hover:bg-teal-700"
+    >
+      Post Comment
+    </button>
+  </form>
+</div>
+
+{% endif %} {% endblock %}
