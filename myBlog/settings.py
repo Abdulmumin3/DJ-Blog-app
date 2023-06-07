@@ -93,8 +93,18 @@ WSGI_APPLICATION = "myBlog.wsgi.application"
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)
 
+# DATABASES = {
+# "default": env.dj_db_url("DATABASE_URL")
+# }
 DATABASES = {
-"default": env.dj_db_url("DATABASE_URL")
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'DJ-BLOG',
+    'USER': 'Abdulmumin3',
+    'PASSWORD': '<% PASSWORD %>',
+    'HOST': 'ep-super-hat-410308.us-east-2.aws.neon.tech',
+    'PORT': '5432',
+  }
 }
 
 # Password validation

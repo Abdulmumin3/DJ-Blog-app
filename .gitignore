@@ -1,4 +1,4 @@
-/vercel.json
+
 /build.sh
 
 # Django #
@@ -138,3 +138,4 @@ GitHub.sublime-settings
 /blog_app/management/commands
 /blog_app/management/commands/__init__.py
 /blog_app/management/commands/createsu.py
+/Procfile/C:/Users/HP PROBOOK 11 G2/PycharmProjects/djangoBlog/myBlog/runtime.txt
