@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'blog_app.apps.BlogAppConfig',
     'tailwind',
     'theme',
-    #'django_browser_reload',
+    'django_browser_reload',
     'imagekit',
 ]
 
@@ -93,19 +93,19 @@ WSGI_APPLICATION = "myBlog.wsgi.application"
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)
 
-# DATABASES = {
-# "default": env.dj_db_url("DATABASE_URL")
-# }
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql',
-    'NAME': 'DJ-BLOG',
-    'USER': 'Abdulmumin3',
-    'PASSWORD': '<% PASSWORD %>',
-    'HOST': 'ep-super-hat-410308.us-east-2.aws.neon.tech',
-    'PORT': '5432',
-  }
+"default": env.dj_db_url("DATABASE_URL")
 }
+# DATABASES = {
+#   'default': {
+#     'ENGINE': 'django.db.backends.postgresql',
+#     'NAME': 'DJ-BLOG',
+#     'USER': 'Abdulmumin3',
+#     'PASSWORD': '<% PASSWORD %>',
+#     'HOST': 'ep-super-hat-410308.us-east-2.aws.neon.tech',
+#     'PORT': '5432',
+#   }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -145,8 +145,9 @@ USE_TZ = True
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static"] # new
 STATIC_ROOT = BASE_DIR / "staticfiles" # new
-MEDIA_URL = 'media/'
-MEDIA_ROOT = 'media/'
+MEDIA_URL = '/images/'
+MEDIA_ROOT = BASE_DIR / 'static/media/'
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 

@@ -7,7 +7,7 @@
     <strong>{{post}}</strong> by {{post.author}} @{{post.updated_at}}
   </h2>
   <br />
-  <p class="mb-4">{{post.body}}</p>
+  <p class="mb-4">{{post.body|linebreaks|urlize}}</p>
   <br />
   <a
     class="py-4 px-8 rounded-xl text-white text-lg bg-teal-500 hover:bg-teal-700"

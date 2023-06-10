@@ -20,7 +20,7 @@
     <h2>{{user.username}}</h2>
     <p>{{user.email}}</p>
     {%if user.bio%}
-    <p>{{user.bio}}</p>
+    <p>{{user.bio|linebreaks|urlize}}</p>
     {%else%}
     <p>Bio not yet added</p>
     {%endif%}
@@ -52,7 +52,7 @@
               <strong>{{post.title}}</strong>
             </h1>
             <p class="leading-relaxed mb-3">
-              {{post.body|truncatechars:50|linebreaks}}
+              {{post.body|truncatechars:50|linebreaks|urlize}}
             </p>
             <div class="flex mt-4 items-center flex-wrap">
               <a
