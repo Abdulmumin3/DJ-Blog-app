@@ -176,5 +176,5 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://web-production-551f.up.railway.app'
+    'https://web-production-eaef.up.railway.app'
 ]
