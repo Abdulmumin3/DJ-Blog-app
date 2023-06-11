@@ -81,7 +81,7 @@ def createPage(request):
             for tag in tags:
                 instance.tags.add(tag)
             instance.save()
-            return redirect('blog:home')
+            return redirect('blog_app:home')
     return render(request, 'blog_app/create-page.html', {'form':form})
 
 @login_required
@@ -101,7 +101,7 @@ def updatePage(request, slug):
                 instance.tags.add(tag)
             instance.save()
             
-            return redirect('blog:home')
+            return redirect('blog_app:home')
     return render(request, 'blog_app/update-page.html', {'form':form, 'post':post})
 
 @login_required
@@ -111,7 +111,7 @@ def deletePage(request, slug):
         raise Http404
     if request.method == 'POST':
         post.delete()
-        return redirect('blog:home')
+        return redirect('blog_app:home')
     return render(request, 'blog_app/delete-page.html', {'post':post})
 
 def loginPage(request):
@@ -124,7 +124,7 @@ def loginPage(request):
             user = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'],)
             if user is not None:
                 login(request, user)
-                return redirect('blog:home')
+                return redirect('blog_app:home')
             else:
                 messages.error(request, 'User credentials not correct')
     return render(request, 'blog_app/login-page.html', {'form':form,})
