@@ -111,3 +111,4 @@ whitenoise
 psycopg2
 pillow
 dj_database_url
+django-environs
