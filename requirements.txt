@@ -113,3 +113,4 @@ pillow
 python-decouple
 django-imagekit
 django_browser_reload
+django-cors-headers
