@@ -111,3 +111,5 @@ whitenoise
 psycopg2
 pillow
 python-decouple
+django-imagekit
+django_browser_reload
